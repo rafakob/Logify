@@ -1,0 +1,24 @@
+ext {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    verMajor = 1
+    verMinor = 0
+    verPatch = 0
+
+    bintray = [
+            artifactId    : 'logify',
+            uploadName    : 'Logify',
+
+            publishVersion: "${verMajor}.${verMinor}.${verPatch}",
+            repoName      : 'maven',
+            groupId       : 'com.rafakob',
+            desc          : 'Display Android logs in runtime',
+            website       : 'https://github.com/rafakob/Logify',
+            repository    : 'https://github.com/rafakob/Logify',
+            licences      : ['Apache-2.0'],
+            dryRun        : false,
+            user          : properties.getProperty('bintray.user'),
+            key           : properties.getProperty('bintray.key')
+    ]
+}
