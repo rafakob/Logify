@@ -2,7 +2,8 @@ package com.rafakob.logify;
 
 import android.content.Context;
 
-import com.rafakob.logify.repository.LogRepository;
+import com.rafakob.logify.repository.LogsRepository;
+import com.rafakob.logify.repository.entity.AppLog;
 
 public class Logify {
 
@@ -36,6 +37,30 @@ public class Logify {
         return new InitializerBuilder(context);
     }
 
+    public static void v(String message) {
+        insertAppLog(AppLog.TYPE_VERBOSE, message);
+    }
+
+    public static void i(String message) {
+        insertAppLog(AppLog.TYPE_INFO, message);
+    }
+
+    public static void d(String message) {
+        insertAppLog(AppLog.TYPE_DEBUG, message);
+    }
+
+    public static void w(String message) {
+        insertAppLog(AppLog.TYPE_WARNING, message);
+    }
+
+    public static void e(String message) {
+        insertAppLog(AppLog.TYPE_ERROR, message);
+    }
+
+    private static void insertAppLog(String type, String message) {
+        LogsRepository.getInstance().insertAppLog(type, message);
+    }
+
     private Logify() {
     }
 
@@ -47,7 +72,7 @@ public class Logify {
         }
 
         private void start() {
-            LogRepository.getInstance().init(context);
+            LogsRepository.getInstance().init(context);
         }
     }
 

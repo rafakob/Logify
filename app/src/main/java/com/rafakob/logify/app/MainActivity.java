@@ -14,5 +14,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         Logify.init(this);
+
+        Logify.i("Test message 1");
+        Logify.i("Test message 2");
+
+//        LogifyActivity.start(this);
     }
 }
