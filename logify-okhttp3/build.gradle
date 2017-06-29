@@ -21,15 +21,14 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.google.code.gson:gson:2.8.1'
+    compile project(':logify')
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
 }
 
 publish {
-    artifactId = 'logify'
-    uploadName = 'Logify'
-    
+    artifactId = 'logify-okhttp3'
+    uploadName = 'Logify-OkHttp3'
+
     publishVersion = bintray.publishVersion
     repoName = bintray.repoName
     groupId = bintray.groupId

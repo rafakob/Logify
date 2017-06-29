@@ -7,9 +7,6 @@ ext {
     verPatch = 0
 
     bintray = [
-            artifactId    : 'logify',
-            uploadName    : 'Logify',
-
             publishVersion: "${verMajor}.${verMinor}.${verPatch}",
             repoName      : 'maven',
             groupId       : 'com.rafakob',

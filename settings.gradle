@@ -1,1 +1,1 @@
-include ':app', ':logify'
+include ':app', ':logify', ':logify-okhttp3'
