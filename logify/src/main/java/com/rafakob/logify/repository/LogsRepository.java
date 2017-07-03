@@ -22,11 +22,18 @@ public class LogsRepository {
         return instance;
     }
 
-    public void insertAppLog(String type, String message) {
+    public void insertAppLog(String tag, String level, String message) {
         AppLog appLog = new AppLog();
-        appLog.setType(type);
+        appLog.setLevel(level);
+        appLog.setTag(tag);
         appLog.setMessage(message);
 
+        logsDao.open();
+        logsDao.insert(appLog);
+        logsDao.close();
+    }
+
+    public void insertAppLog(AppLog appLog) {
         logsDao.open();
         logsDao.insert(appLog);
         logsDao.close();

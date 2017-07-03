@@ -1,21 +1,30 @@
 package com.rafakob.logify.repository.entity;
 
 public class AppLog extends Log {
-    public static final String TYPE_VERBOSE = "verbose";
-    public static final String TYPE_INFO = "info";
-    public static final String TYPE_DEBUG = "debug";
-    public static final String TYPE_WARNING = "warning";
-    public static final String TYPE_ERROR = "error";
+    public static final String LEVEL_VERBOSE = "verbose";
+    public static final String LEVEL_INFO = "info";
+    public static final String LEVEL_DEBUG = "debug";
+    public static final String LEVEL_WARNING = "warning";
+    public static final String LEVEL_ERROR = "error";
 
-    private String type;
+    private String level;
+    private String tag;
     private String message;
 
-    public String getType() {
-        return type;
+    public String getLevel() {
+        return level;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setLevel(String type) {
+        this.level = type;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public String getMessage() {

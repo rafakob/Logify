@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.rafakob.logify.repository.LogsRepository;
 import com.rafakob.logify.repository.entity.AppLog;
+import com.rafakob.logify.repository.entity.NetworkLog;
 
 public class Logify {
 
@@ -38,27 +39,52 @@ public class Logify {
     }
 
     public static void v(String message) {
-        insertAppLog(AppLog.TYPE_VERBOSE, message);
+        insertAppLog(null, AppLog.LEVEL_VERBOSE, message);
     }
 
     public static void i(String message) {
-        insertAppLog(AppLog.TYPE_INFO, message);
+        insertAppLog(null, AppLog.LEVEL_INFO, message);
     }
 
     public static void d(String message) {
-        insertAppLog(AppLog.TYPE_DEBUG, message);
+        insertAppLog(null, AppLog.LEVEL_DEBUG, message);
     }
 
     public static void w(String message) {
-        insertAppLog(AppLog.TYPE_WARNING, message);
+        insertAppLog(null, AppLog.LEVEL_WARNING, message);
     }
 
     public static void e(String message) {
-        insertAppLog(AppLog.TYPE_ERROR, message);
+        insertAppLog(null, AppLog.LEVEL_ERROR, message);
     }
 
-    private static void insertAppLog(String type, String message) {
-        LogsRepository.getInstance().insertAppLog(type, message);
+    public static void v(String tag, String message) {
+        insertAppLog(tag, AppLog.LEVEL_VERBOSE, message);
+    }
+
+    public static void i(String tag, String message) {
+        insertAppLog(tag, AppLog.LEVEL_INFO, message);
+    }
+
+    public static void d(String tag, String message) {
+        insertAppLog(tag, AppLog.LEVEL_DEBUG, message);
+    }
+
+    public static void w(String tag, String message) {
+        insertAppLog(tag, AppLog.LEVEL_WARNING, message);
+    }
+
+    public static void e(String tag, String message) {
+        insertAppLog(tag, AppLog.LEVEL_ERROR, message);
+    }
+
+
+    private static void insertAppLog(String tag, String level, String message) {
+        LogsRepository.getInstance().insertAppLog(tag, level, message);
+    }
+
+    public static void insertNetworkLog(NetworkLog networkLog) {
+        LogsRepository.getInstance().insertNetworkLog(networkLog);
     }
 
     private Logify() {
