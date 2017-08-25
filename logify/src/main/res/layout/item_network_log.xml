@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:orientation="horizontal">
+
+    <View
+        android:id="@+id/label"
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:background="#FF0000" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingBottom="4dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GET"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/path"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="/api/v1/path/to/resource"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017-06-15 12:45:30"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/host"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="thisistesthostaddress.com"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200 OK"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

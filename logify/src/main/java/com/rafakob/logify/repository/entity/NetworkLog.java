@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NetworkLog extends Log {
-
     private String url;
     private String host;
     private String path;

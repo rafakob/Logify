@@ -5,6 +5,7 @@ import android.content.Context;
 import com.rafakob.logify.repository.LogsRepository;
 import com.rafakob.logify.repository.entity.AppLog;
 import com.rafakob.logify.repository.entity.NetworkLog;
+import com.rafakob.logify.view.LogifyActivity;
 
 public class Logify {
 
@@ -78,13 +79,16 @@ public class Logify {
         insertAppLog(tag, AppLog.LEVEL_ERROR, message);
     }
 
-
     private static void insertAppLog(String tag, String level, String message) {
         LogsRepository.getInstance().insertAppLog(tag, level, message);
     }
 
     public static void insertNetworkLog(NetworkLog networkLog) {
         LogsRepository.getInstance().insertNetworkLog(networkLog);
+    }
+
+    public static void startActivity(Context context) {
+        LogifyActivity.start(context);
     }
 
     private Logify() {

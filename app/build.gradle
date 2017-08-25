@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '25.0.3'
     defaultConfig {
         applicationId "com.rafakob.logify.app"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName '1.0'
     }
@@ -19,17 +19,18 @@ android {
 }
 
 dependencies {
-    compile project(':logify')
-    compile project(':logify-okhttp3')
+    implementation project(':logify')
+    implementation project(':logify-okhttp3')
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    implementation 'com.android.support:appcompat-v7:26.0.1'
+    implementation 'com.android.support:support-annotations:26.0.1'
+    implementation 'com.android.support:design:26.0.1'
 
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
 
-    compile 'com.google.code.gson:gson:2.8.1'
+    implementation 'com.google.code.gson:gson:2.8.1'
 
-    compile 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho:1.5.0'
 }

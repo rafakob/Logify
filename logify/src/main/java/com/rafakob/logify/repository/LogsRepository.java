@@ -3,7 +3,10 @@ package com.rafakob.logify.repository;
 import android.content.Context;
 
 import com.rafakob.logify.repository.entity.AppLog;
+import com.rafakob.logify.repository.entity.Log;
 import com.rafakob.logify.repository.entity.NetworkLog;
+
+import java.util.List;
 
 
 public class LogsRepository {
@@ -43,5 +46,12 @@ public class LogsRepository {
         logsDao.open();
         logsDao.insert(networkLog);
         logsDao.close();
+    }
+
+    public List<Log> getLogs() {
+        logsDao.open();
+        List<Log> logs = logsDao.select();
+        logsDao.close();
+        return logs;
     }
 }

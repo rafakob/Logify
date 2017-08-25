@@ -1,5 +1,6 @@
 package com.rafakob.logify.okhttp3;
 
+
 import android.support.annotation.NonNull;
 
 import com.rafakob.logify.repository.LogsRepository;

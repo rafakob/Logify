@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '25.0.3'
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode verMajor * 100000 + verMinor * 100 + verPatch
         versionName "${verMajor}.${verMinor}.${verPatch}"
     }
@@ -21,8 +21,9 @@ android {
 }
 
 dependencies {
-    compile project(':logify')
-    compile 'com.squareup.okhttp3:okhttp:3.7.0'
+    implementation project(':logify')
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation 'com.android.support:support-annotations:26.0.1'
 }
 
 publish {
