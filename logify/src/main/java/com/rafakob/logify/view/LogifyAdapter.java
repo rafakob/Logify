@@ -19,8 +19,9 @@ import java.util.Locale;
 public class LogifyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int TYPE_APP = 0;
     public static final int TYPE_NETWORK = 1;
-
+    private ItemListener itemListener;
     private List<Log> items = new ArrayList<>();
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -117,12 +118,20 @@ public class LogifyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public class AppLogViewHolder extends RecyclerView.ViewHolder {
         TextView tag, level, message, timestamp;
 
-        public AppLogViewHolder(View itemView) {
+        public AppLogViewHolder(final View itemView) {
             super(itemView);
             tag = itemView.findViewById(R.id.tag);
             level = itemView.findViewById(R.id.level);
             message = itemView.findViewById(R.id.message);
             timestamp = itemView.findViewById(R.id.timestamp);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (itemListener != null) {
+                        itemListener.onAppLogClick((AppLog) items.get(getAdapterPosition()));
+                    }
+                }
+            });
         }
     }
 
@@ -137,11 +146,29 @@ public class LogifyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             timestamp = itemView.findViewById(R.id.timestamp);
             host = itemView.findViewById(R.id.host);
             status = itemView.findViewById(R.id.status);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (itemListener != null) {
+                        itemListener.onNetworkLogClick((NetworkLog) items.get(getAdapterPosition()));
+                    }
+                }
+            });
         }
+    }
+
+    public void setItemListener(ItemListener itemListener) {
+        this.itemListener = itemListener;
     }
 
     public void setItems(List<Log> items) {
         this.items = items;
         notifyDataSetChanged();
+    }
+
+    public interface ItemListener {
+        void onAppLogClick(AppLog appLog);
+
+        void onNetworkLogClick(NetworkLog networkLog);
     }
 }

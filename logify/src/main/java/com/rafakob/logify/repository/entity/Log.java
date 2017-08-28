@@ -1,6 +1,8 @@
 package com.rafakob.logify.repository.entity;
 
-public abstract class Log {
+import java.io.Serializable;
+
+public abstract class Log implements Serializable {
     private transient Long id;
 
     public Long getId() {
