@@ -6,6 +6,7 @@ import com.rafakob.logify.repository.entity.AppLog;
 import com.rafakob.logify.repository.entity.Log;
 import com.rafakob.logify.repository.entity.NetworkLog;
 
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -30,6 +31,7 @@ public class LogsRepository {
         appLog.setLevel(level);
         appLog.setTag(tag);
         appLog.setMessage(message);
+        appLog.setTimestamp(Calendar.getInstance().getTimeInMillis());
 
         logsDao.open();
         logsDao.insert(appLog);

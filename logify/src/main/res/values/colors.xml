@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="logify_netowrk_log_error">#E53935</color>
-    <color name="logify_netowrk_log_success">#43A047</color>
-    <color name="logify_netowrk_log_undefined">#546E7A</color>
-
+    <color name="logify_log_verbose">#607D8B</color>
+    <color name="logify_log_debug">#039BE5</color>
+    <color name="logify_log_info">#009688</color>
+    <color name="logify_log_warning">#FFC107</color>
+    <color name="logify_log_error">#F44336</color>
+    <color name="logify_log_success">#4CAF50</color>
+    <color name="logify_log_undefined">#607D8B</color>
 </resources>

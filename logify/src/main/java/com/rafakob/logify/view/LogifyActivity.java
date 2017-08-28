@@ -5,23 +5,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.rafakob.logify.R;
 import com.rafakob.logify.repository.LogsRepository;
+import com.rafakob.logify.repository.entity.AppLog;
 import com.rafakob.logify.repository.entity.Log;
+import com.rafakob.logify.repository.entity.NetworkLog;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-public class LogifyActivity extends AppCompatActivity {
+public class LogifyActivity extends AppCompatActivity implements LogifyAdapter.ItemListener {
 
     private LogifyAdapter adapter = new LogifyAdapter();
-    private View loadingState;
     private RecyclerView recycler;
+    private View loadingState;
 
     public static void start(Context context) {
         context.startActivity(new Intent(context, LogifyActivity.class));
@@ -32,10 +35,11 @@ public class LogifyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logify);
         loadingState = findViewById(R.id.loading_state);
+
+        adapter.setItemListener(this);
         recycler = findViewById(R.id.recycler);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setItemAnimator(new DefaultItemAnimator());
-//        recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recycler.setAdapter(adapter);
         loadLogs();
     }
@@ -54,6 +58,12 @@ public class LogifyActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                Collections.sort(logs, new Comparator<Log>() {
+                    @Override
+                    public int compare(Log t1, Log t2) {
+                        return t2.getId().compareTo(t1.getId());
+                    }
+                });
                 adapter.setItems(logs);
                 showContentState();
             }
@@ -68,5 +78,16 @@ public class LogifyActivity extends AppCompatActivity {
     private void showContentState() {
         loadingState.setVisibility(View.GONE);
         recycler.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onAppLogClick(AppLog appLog) {
+
+    }
+
+    @Override
+    public void onNetworkLogClick(NetworkLog networkLog) {
+        NetworkLogDialog dialog = NetworkLogDialog.newInstance(networkLog);
+        dialog.show(getFragmentManager(), "NetworkLogDialog");
     }
 }

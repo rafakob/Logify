@@ -16,6 +16,7 @@ public class NetworkLog extends Log {
     private Map<String, String> requestHeaders = new HashMap<>();
     private String requestBody;
     private Integer responseCode;
+    private String responseMessage;
     private Map<String, String> responseHeaders = new HashMap<>();
     private String responseBody;
 
@@ -81,6 +82,14 @@ public class NetworkLog extends Log {
 
     public void setRequestMethod(String requestMethod) {
         this.requestMethod = requestMethod;
+    }
+
+    public String getResponseMessage() {
+        return responseMessage;
+    }
+
+    public void setResponseMessage(String responseMessage) {
+        this.responseMessage = responseMessage;
     }
 
     public Map<String, String> getRequestParams() {

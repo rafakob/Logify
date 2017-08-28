@@ -10,6 +10,7 @@ public class AppLog extends Log {
     private String level;
     private String tag;
     private String message;
+    private Long timestamp;
 
     public String getLevel() {
         return level;
@@ -33,5 +34,13 @@ public class AppLog extends Log {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }
