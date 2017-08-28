@@ -1,83 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="2dp"
-    android:background="#FFF"
+    android:layout_marginBottom="6dp"
     android:clickable="true"
     android:foreground="?selectableItemBackground"
-    android:orientation="horizontal">
-
-    <View
-        android:id="@+id/label"
-        android:layout_width="6dp"
-        android:layout_height="match_parent"
-        android:background="#FF0000" />
+    app:cardCornerRadius="0dp">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingBottom="4dp"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp"
-        android:paddingTop="4dp">
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/method"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GET"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="16sp"
+                tools:text="GET" />
 
             <TextView
                 android:id="@+id/path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="16sp"
+                tools:text="/api/v1/path/to/resource" />
+
+            <TextView
+                android:id="@+id/duration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:text="/api/v1/path/to/resource"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                android:alpha="0.5"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textSize="12sp"
+                tools:text="1234ms" />
 
             <TextView
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="200 (1234 ms)"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
+                android:background="@drawable/logify_round_rect_success"
+                android:textColor="#FFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="200 OK" />
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/host"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textSize="13sp"
+            tools:text="thisistesthostaddress.com" />
 
-            <TextView
-                android:id="@+id/host"
+        <TextView
+            android:alpha="0.5"
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            tools:text="2017-06-15, 12:45:30" />
 
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:text="thisistesthostaddress.com"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
-            <TextView
-                android:id="@+id/timestamp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2017-06-15, 12:45:30"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</android.support.v7.widget.CardView>

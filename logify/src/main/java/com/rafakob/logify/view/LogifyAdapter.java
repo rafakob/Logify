@@ -14,6 +14,7 @@ import com.rafakob.logify.repository.entity.NetworkLog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class LogifyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final int TYPE_APP = 0;
@@ -47,24 +48,49 @@ public class LogifyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private void bindNetworkLogViewHolder(NetworkLogViewHolder vh, NetworkLog model) {
         vh.method.setText(model.getRequestMethod());
         vh.path.setText(model.getPath());
+        vh.duration.setText(String.format(Locale.getDefault(), "%dms", model.getDuration()));
+        vh.host.setText(model.getHost());
         vh.timestamp.setText(getDateFromTimestamp(model.getTimestamp()));
-        vh.status.setText(model.getResponseCode().toString() + " (" + model.getDuration().toString() + " ms)");
+        vh.status.setText(String.format("%s %s", model.getResponseCode(), model.getResponseMessage()).trim());
 
         if (model.getResponseCode() >= 200 && model.getResponseCode() < 400) {
-            vh.label.setBackgroundResource(R.color.logify_netowrk_log_success);
+            vh.status.setBackgroundResource(R.drawable.logify_round_rect_success);
         }
 
         if (model.getResponseCode() >= 400 && model.getResponseCode() < 500) {
-            vh.label.setBackgroundResource(R.color.logify_netowrk_log_error);
+            vh.status.setBackgroundResource(R.drawable.logify_round_rect_error);
         }
 
         if (model.getResponseCode() >= 500) {
-            vh.label.setBackgroundResource(R.color.logify_netowrk_log_undefined);
+            vh.status.setBackgroundResource(R.drawable.logify_round_rect_undefined);
         }
     }
 
     private void bindAppLogViewHolder(AppLogViewHolder vh, AppLog model) {
+        vh.tag.setText(model.getTag());
+        vh.level.setText(model.getLevel().toUpperCase());
+        vh.message.setText(model.getMessage());
+        vh.timestamp.setText(getDateFromTimestamp(model.getTimestamp()));
 
+        if (model.getLevel().equals(AppLog.LEVEL_DEBUG)) {
+            vh.level.setBackgroundResource(R.drawable.logify_round_rect_debug);
+        }
+
+        if (model.getLevel().equals(AppLog.LEVEL_ERROR)) {
+            vh.level.setBackgroundResource(R.drawable.logify_round_rect_error);
+        }
+
+        if (model.getLevel().equals(AppLog.LEVEL_INFO)) {
+            vh.level.setBackgroundResource(R.drawable.logify_round_rect_info);
+        }
+
+        if (model.getLevel().equals(AppLog.LEVEL_VERBOSE)) {
+            vh.level.setBackgroundResource(R.drawable.logify_round_rect_verbose);
+        }
+
+        if (model.getLevel().equals(AppLog.LEVEL_WARNING)) {
+            vh.level.setBackgroundResource(R.drawable.logify_round_rect_warning);
+        }
     }
 
     private String getDateFromTimestamp(long timestamp) {
@@ -89,23 +115,28 @@ public class LogifyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
     public class AppLogViewHolder extends RecyclerView.ViewHolder {
+        TextView tag, level, message, timestamp;
+
         public AppLogViewHolder(View itemView) {
             super(itemView);
+            tag = itemView.findViewById(R.id.tag);
+            level = itemView.findViewById(R.id.level);
+            message = itemView.findViewById(R.id.message);
+            timestamp = itemView.findViewById(R.id.timestamp);
         }
     }
 
     public class NetworkLogViewHolder extends RecyclerView.ViewHolder {
-        TextView method, path, timestamp, host, status;
-        View label;
+        TextView method, path, duration, timestamp, host, status;
 
         public NetworkLogViewHolder(View itemView) {
             super(itemView);
             method = itemView.findViewById(R.id.method);
             path = itemView.findViewById(R.id.path);
+            duration = itemView.findViewById(R.id.duration);
             timestamp = itemView.findViewById(R.id.timestamp);
             host = itemView.findViewById(R.id.host);
             status = itemView.findViewById(R.id.status);
-            label = itemView.findViewById(R.id.label);
         }
     }
 

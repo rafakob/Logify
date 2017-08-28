@@ -51,6 +51,7 @@ public class LogifyInterceptor implements Interceptor {
 
         log.setRequestMethod(request.method());
         log.setResponseCode(response.code());
+        log.setResponseMessage(response.message());
         log.setUrl(request.url().toString());
         log.setHost(request.url().host());
         log.setPath("/" + join(request.url().encodedPathSegments(), "/"));

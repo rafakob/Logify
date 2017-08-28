@@ -39,26 +39,6 @@ public class Logify {
         return new InitializerBuilder(context);
     }
 
-    public static void v(String message) {
-        insertAppLog(null, AppLog.LEVEL_VERBOSE, message);
-    }
-
-    public static void i(String message) {
-        insertAppLog(null, AppLog.LEVEL_INFO, message);
-    }
-
-    public static void d(String message) {
-        insertAppLog(null, AppLog.LEVEL_DEBUG, message);
-    }
-
-    public static void w(String message) {
-        insertAppLog(null, AppLog.LEVEL_WARNING, message);
-    }
-
-    public static void e(String message) {
-        insertAppLog(null, AppLog.LEVEL_ERROR, message);
-    }
-
     public static void v(String tag, String message) {
         insertAppLog(tag, AppLog.LEVEL_VERBOSE, message);
     }

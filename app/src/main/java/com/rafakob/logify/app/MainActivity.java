@@ -2,15 +2,13 @@ package com.rafakob.logify.app;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 import com.rafakob.logify.Logify;
 import com.rafakob.logify.okhttp3.LogifyInterceptor;
 
-import java.util.List;
-
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,56 +23,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Logify.i("Test info message");
-//        Logify.d("Test debug message");
-//
+//        Logify.i("Test", "Test info message");
+//        Logify.d("MainActivity", "Test debug message");
         findViewById(R.id.logify).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Logify.startActivity(MainActivity.this);
             }
         });
-//
-//
-//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-//                .addInterceptor(new LogifyInterceptor())
-//                .build();
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .client(okHttpClient)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .baseUrl("https://jsonplaceholder.typicode.com")
-//                .build();
-//
-//        Api api = retrofit.create(Api.class);
-//
-//        api.getUsers().enqueue(new Callback<List<User>>() {
-//            @Override
-//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-//                Log.d("Logify", response.toString());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<User>> call, Throwable t) {
-//                t.printStackTrace();
-//            }
-//        });
+
+//        testApiCall();
+    }
+
+    private void testApiCall() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new LogifyInterceptor())
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://swapi.co")
+                .build();
+
+        Api api = retrofit.create(Api.class);
+
+        api.getUsers().enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     public interface Api {
-        @GET("/users")
-        Call<List<User>> getUsers();
+        @GET("/api/people")
+        Call<Void> getUsers();
     }
 
-    public static class User {
-        int id;
-        String name;
-        String email;
-        Address address;
 
-        public static class Address {
-            String stree;
-            String city;
-        }
-    }
 }

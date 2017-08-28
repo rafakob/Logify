@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,6 +13,8 @@ import com.rafakob.logify.R;
 import com.rafakob.logify.repository.LogsRepository;
 import com.rafakob.logify.repository.entity.Log;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -54,6 +55,12 @@ public class LogifyActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                Collections.sort(logs, new Comparator<Log>() {
+                    @Override
+                    public int compare(Log t1, Log t2) {
+                        return t2.getId().compareTo(t1.getId());
+                    }
+                });
                 adapter.setItems(logs);
                 showContentState();
             }
