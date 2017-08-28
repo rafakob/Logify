@@ -1,1 +1,11 @@
-<manifest package="com.rafakob.logify"/>
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="com.rafakob.logify"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity android:name=".view.LogifyActivity">
+        </activity>
+    </application>
+
+</manifest>

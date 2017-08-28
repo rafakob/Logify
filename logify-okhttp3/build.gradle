@@ -21,16 +21,14 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:26.0.1'
+    implementation project(':logify')
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.android.support:support-annotations:26.0.1'
-    implementation 'com.android.support:recyclerview-v7:26.0.1'
-    implementation 'com.android.support:cardview-v7:26.0.1'
-    implementation 'com.google.code.gson:gson:2.8.1'
 }
 
 publish {
-    artifactId = 'logify'
-    uploadName = 'Logify'
+    artifactId = 'logify-okhttp3'
+    uploadName = 'Logify-OkHttp3'
 
     publishVersion = bintray.publishVersion
     repoName = bintray.repoName
