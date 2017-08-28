@@ -4,7 +4,7 @@ ext {
 
     verMajor = 1
     verMinor = 0
-    verPatch = 0
+    verPatch = 1
 
     bintray = [
             publishVersion: "${verMajor}.${verMinor}.${verPatch}",
