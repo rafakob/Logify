@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="logify_netowrk_log_error">#E53935</color>
+    <color name="logify_netowrk_log_success">#43A047</color>
+    <color name="logify_netowrk_log_undefined">#546E7A</color>
+
 </resources>

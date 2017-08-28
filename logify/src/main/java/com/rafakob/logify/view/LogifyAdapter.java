@@ -1,7 +1,7 @@
 package com.rafakob.logify.view;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,24 +47,28 @@ public class LogifyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private void bindNetworkLogViewHolder(NetworkLogViewHolder vh, NetworkLog model) {
         vh.method.setText(model.getRequestMethod());
         vh.path.setText(model.getPath());
-        vh.timestamp.setText(model.getTimestamp().toString());
-        vh.status.setText(model.getResponseCode().toString());
+        vh.timestamp.setText(getDateFromTimestamp(model.getTimestamp()));
+        vh.status.setText(model.getResponseCode().toString() + " (" + model.getDuration().toString() + " ms)");
 
         if (model.getResponseCode() >= 200 && model.getResponseCode() < 400) {
-            vh.label.setBackgroundColor(Color.GREEN);
+            vh.label.setBackgroundResource(R.color.logify_netowrk_log_success);
         }
 
         if (model.getResponseCode() >= 400 && model.getResponseCode() < 500) {
-            vh.label.setBackgroundColor(Color.RED);
+            vh.label.setBackgroundResource(R.color.logify_netowrk_log_error);
         }
 
         if (model.getResponseCode() >= 500) {
-            vh.label.setBackgroundColor(Color.BLACK);
+            vh.label.setBackgroundResource(R.color.logify_netowrk_log_undefined);
         }
     }
 
     private void bindAppLogViewHolder(AppLogViewHolder vh, AppLog model) {
 
+    }
+
+    private String getDateFromTimestamp(long timestamp) {
+        return DateFormat.format("yyyy-MM-dd, hh:mm:ss", timestamp).toString();
     }
 
     @Override
